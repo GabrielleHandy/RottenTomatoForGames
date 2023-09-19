@@ -15,7 +15,10 @@ public class SecurityConfiguration {
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){return new BCryptPasswordEncoder();}
-
+    @Bean
+    public JwtRequestFilter authJwtRequestFilter(){
+        return new JwtRequestFilter();
+    }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/auth/users", "/auth/users/login/","/auth/users/register/" ).permitAll()
