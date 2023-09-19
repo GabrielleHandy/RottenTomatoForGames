@@ -1,6 +1,7 @@
 package com.example.rottentomatoforgames.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name= "games")
