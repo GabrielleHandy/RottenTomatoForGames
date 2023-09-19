@@ -1,5 +1,6 @@
 package com.example.rottentomatoforgames.security;
 
+import com.example.rottentomatoforgames.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -7,6 +8,11 @@ import java.util.Collection;
 import java.util.HashSet;
 
 public class MyUserDetails implements UserDetails {
+    private final User user;
+
+    public MyUserDetails(User user) {
+        this.user = user;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -15,7 +21,7 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return user;
     }
 
     @Override
