@@ -31,4 +31,43 @@ public class Rating {
     @Column
     private String review;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public UserProfile getRatedBy() {
+        return ratedBy;
+    }
+
+    public void setRatedBy(UserProfile ratedBy) {
+        this.ratedBy = ratedBy;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public String getReview() {
+        return review;
+    }
+
+    public void setReview(String review) {
+        this.review = review;
+    }
 }
