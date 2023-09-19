@@ -1,5 +1,6 @@
 package com.example.rottentomatoforgames.security;
 
+import com.example.rottentomatoforgames.model.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,5 +26,9 @@ public class JwtUtils {
                 .setExpiration(new Date(new Date().getTime() + jwtExpMs))
                 .signWith(SignatureAlgorithm.HS256, jwtSecret)
                 .compact();
+    }
+
+    public String getUserNameFromJwtToken(String token){
+        return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJwt(token).getBody().getSubject();
     }
 }
