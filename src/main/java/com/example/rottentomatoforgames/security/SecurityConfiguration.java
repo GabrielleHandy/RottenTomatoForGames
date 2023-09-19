@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration {
-
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder(){return new BCryptPasswordEncoder();}
 
 }
