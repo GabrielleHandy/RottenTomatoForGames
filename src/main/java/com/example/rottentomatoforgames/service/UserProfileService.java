@@ -32,5 +32,14 @@ public class UserProfileService {
 
     }
 
+    public UserProfile getMyProfileById(Long id){
+        setUser();
+        Optional<UserProfile> userProfile = Optional.ofNullable(userProfileRepository.findUserProfileByIdAndUserId(id,user));
+        if(userProfile.isPresent()){
+            return userProfile.get();
+        }
+        else{
 
+        }
+    }
 }
