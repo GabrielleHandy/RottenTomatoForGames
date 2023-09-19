@@ -11,6 +11,12 @@ public class LoginRequest {
         this.password = password;
     }
 
+    public String getEmailAddress() {
+        return emailAddress;
+    }
 
+    public String getPassword() {
+        return password;
+    }
 
 }
