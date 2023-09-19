@@ -35,4 +35,6 @@ public class UserService {
         }
         throw new InformationExistException("User with email address " + userObj.getEmailAddress()+ " already exists.");
     }
+
+
 }
