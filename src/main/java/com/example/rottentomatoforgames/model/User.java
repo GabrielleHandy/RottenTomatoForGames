@@ -18,15 +18,20 @@ public class User {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column
     private String password;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "profile_id", referencedColumnName = "id")
+    private UserProfile userProfile;
 
     public User() {
     }
 
-    public User(Long id, String userName, String emailAddress, String password) {
+
+    public User(Long id, String userName, String emailAddress, String password, UserProfile userProfile) {
         this.id = id;
         this.userName = userName;
         this.emailAddress = emailAddress;
         this.password = password;
+        this.userProfile = userProfile;
     }
 
     public Long getId() {
