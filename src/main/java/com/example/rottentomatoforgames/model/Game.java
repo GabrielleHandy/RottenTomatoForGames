@@ -20,13 +20,24 @@ public class Game {
     @OneToMany(mappedBy = "game", orphanRemoval = true)
     @Column
     private List<Rating> ratings;
-    @OneToMany
+
     @Column
-    private List<GameGenre> genres;
+    private String genre;
 
     @Column
     private int releaseYear;
 
+    public Game() {
+    }
+
+    public Game(Long id, String title, int averageRating, List<Rating> ratings, String genre, int releaseYear) {
+        this.id = id;
+        this.title = title;
+        this.averageRating = averageRating;
+        this.ratings = ratings;
+        this.genre = genre;
+        this.releaseYear = releaseYear;
+    }
 }
 
 

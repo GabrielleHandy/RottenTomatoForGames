@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="profiles")
@@ -17,7 +18,9 @@ public class UserProfile {
     @OneToOne
     @JsonIgnore
     private User user;
-//    List<Ratings>
+
+    @OneToMany(mappedBy = "ratedBy", orphanRemoval = true)
+    private List<Rating>  ratings;
 //    List<Follower>
 
     @Column

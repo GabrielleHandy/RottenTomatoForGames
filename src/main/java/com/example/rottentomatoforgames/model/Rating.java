@@ -17,8 +17,8 @@ public class Rating {
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "user_id")
-    private User ratedBy;
+    @JoinColumn(name = "profile_id")
+    private UserProfile ratedBy;
 
     @ManyToOne
     @JsonIgnore
