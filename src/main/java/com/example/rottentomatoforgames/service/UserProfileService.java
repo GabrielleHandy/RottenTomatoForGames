@@ -4,6 +4,7 @@ import com.example.rottentomatoforgames.exception.InformationNotFoundException;
 import com.example.rottentomatoforgames.model.User;
 import com.example.rottentomatoforgames.model.UserProfile;
 import com.example.rottentomatoforgames.repository.UserProfileRepository;
+import com.example.rottentomatoforgames.repository.UserRepository;
 import com.example.rottentomatoforgames.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,12 +17,13 @@ import java.util.logging.Logger;
 public class UserProfileService {
     Logger logger = Logger.getLogger(UserProfileService.class.getName());
     private final UserProfileRepository userProfileRepository;
-    private final UserService userService;
+    private final UserRepository userRepository;
     private User user;
     @Autowired
-    public UserProfileService(UserProfileRepository userProfileRepository, UserService userService) {
+    public UserProfileService(UserProfileRepository userProfileRepository, UserRepository userRepository) {
         this.userProfileRepository = userProfileRepository;
-        this.userService = userService;
+        this.userRepository = userRepository;
+
 
     }
 
@@ -36,5 +38,14 @@ public class UserProfileService {
     public UserProfile getMyProfile() {
         setUser();
         return userProfileRepository.findUserProfileByUser(user);
+    }
+
+
+    public UserProfile findUserProfileByUserId(Long Id){
+        Optional<User> optionalUser = userRepository.findById(Id);
+        if(optionalUser.isPresent()){
+            return userProfileRepository.findUserProfileByUser(optionalUser.get());
+        }
+        throw new InformationNotFoundException("User with Id: " + Id + " doesn't exist.");
     }
 }
