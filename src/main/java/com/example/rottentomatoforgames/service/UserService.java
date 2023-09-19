@@ -1,6 +1,7 @@
 package com.example.rottentomatoforgames.service;
 import com.example.rottentomatoforgames.exception.InformationExistException;
 import com.example.rottentomatoforgames.model.User;
+import com.example.rottentomatoforgames.model.UserProfile;
 import com.example.rottentomatoforgames.model.request.LoginRequest;
 import com.example.rottentomatoforgames.repository.UserRepository;
 import com.example.rottentomatoforgames.security.JwtUtils;
@@ -39,7 +40,11 @@ public class UserService {
     public User createUser(User userObj){
         if(!userRepository.existsByEmailAddress(userObj.getEmailAddress())){
             userObj.setPassword(passwordEncoder.encode(userObj.getPassword()));
-            return userRepository.save(userObj);
+            UserProfile userProfile = new UserProfile();
+            User newUser =userRepository.save(userObj);
+            userProfile.setUser(newUser);
+
+            return newUser;
         }
         throw new InformationExistException("User with email address " + userObj.getEmailAddress()+ " already exists.");
     }

@@ -24,15 +24,26 @@ public class UserProfile {
     private Date lastActive;
 
     public UserProfile() {
-        this.lastActive = new Date();
+        setLastActive();
+    }
+
+    public UserProfile(Long id, User user, Date lastActive) {
+        this.id = id;
+        this.user = user;
+        this.lastActive = lastActive;
     }
 
     public User getUser() {
         return user;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public void setLastActive() {
         this.lastActive = new Date();
     }
+
+
 }
