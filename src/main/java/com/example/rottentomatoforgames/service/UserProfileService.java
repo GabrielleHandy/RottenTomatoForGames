@@ -1,5 +1,6 @@
 package com.example.rottentomatoforgames.service;
 
+import com.example.rottentomatoforgames.exception.InformationNotFoundException;
 import com.example.rottentomatoforgames.model.User;
 import com.example.rottentomatoforgames.model.UserProfile;
 import com.example.rottentomatoforgames.repository.UserProfileRepository;
@@ -32,14 +33,8 @@ public class UserProfileService {
 
     }
 
-    public UserProfile getMyProfileById(Long id){
+    public UserProfile getMyProfile() {
         setUser();
-        Optional<UserProfile> userProfile = Optional.ofNullable(userProfileRepository.findUserProfileByIdAndUserId(id,user));
-        if(userProfile.isPresent()){
-            return userProfile.get();
-        }
-        else{
-
-        }
+        return userProfileRepository.findUserProfileByUser(user);
     }
 }
