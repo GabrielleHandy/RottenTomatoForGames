@@ -20,6 +20,9 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
     }
+    public User findUserByEmail(String email){
+        return userRepository.findUserByEmailAddress(email);
+    }
     public User createUser(User userObj){
         if(!userRepository.existsByEmailAddress(userObj.getEmailAddress())){
             userObj.setPassword(passwordEncoder.encode(userObj.getPassword()));

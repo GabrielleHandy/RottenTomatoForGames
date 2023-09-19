@@ -1,5 +1,6 @@
 package com.example.rottentomatoforgames.security;
 
+import com.example.rottentomatoforgames.model.User;
 import com.example.rottentomatoforgames.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,5 +14,11 @@ public class MyUserDetailsService implements UserDetailsService {
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userService.findUserByEmail(email);
+        return new MyUserDetails(user);
     }
 }
