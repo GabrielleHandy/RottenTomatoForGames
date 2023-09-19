@@ -16,4 +16,8 @@ public class UserProfileController {
         this.userProfileService = userProfileService;
     }
 
+    @GetMapping("/profile/")
+    public UserProfile getMyProfile(){
+        return userProfileService.getMyProfile();
+    }
 }
