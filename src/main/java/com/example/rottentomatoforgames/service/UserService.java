@@ -24,12 +24,14 @@ public class UserService {
     private final UserRepository userRepository;
     private final AuthenticationManager authenticationManager;
     private final JwtUtils jwtUtils;
+
     @Autowired
     public UserService(@Lazy PasswordEncoder passwordEncoder, UserRepository userRepository, @Lazy AuthenticationManager authenticationManager, JwtUtils jwtUtils) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.authenticationManager = authenticationManager;
         this.jwtUtils = jwtUtils;
+
     }
     public User findUserByEmail(String email){
         return userRepository.findUserByEmailAddress(email);
