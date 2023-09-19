@@ -60,9 +60,8 @@ public class Game {
     }
 
     public void setAverageRating() {
-        int count = 0;
-        int avergageRating = ratings.forEach(rating -> {rating.});
-        this.averageRating = averageRating;
+        int averageRating = ratings.stream().map(Rating::getRating).reduce(0, Integer::sum );
+        this.averageRating = averageRating/ratings.size();
     }
 
     public List<Rating> getRatings() {
