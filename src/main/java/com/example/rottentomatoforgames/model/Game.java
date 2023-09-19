@@ -17,12 +17,12 @@ public class Game {
     @Column
     private int averageRating;
 
-
+    @OneToMany(mappedBy = "game", orphanRemoval = true)
     @Column
     private List<Rating> ratings;
-
+    @OneToMany
     @Column
-    private List<Genres> genres;
+    private List<GameGenre> genres;
 
     @Column
     private int releaseYear;

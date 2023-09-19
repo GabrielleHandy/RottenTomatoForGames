@@ -17,10 +17,12 @@ public class Rating {
 
     @ManyToOne
     @JsonIgnore
+    @JoinColumn(name = "user_id")
     private User ratedBy;
 
     @ManyToOne
     @JsonIgnore
+    @JoinColumn(name = "game_id")
     private Game game;
 
     @Column
