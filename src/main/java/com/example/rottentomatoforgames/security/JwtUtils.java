@@ -1,6 +1,5 @@
 package com.example.rottentomatoforgames.security;
 
-import com.example.rottentomatoforgames.model.User;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
