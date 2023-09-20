@@ -34,22 +34,24 @@ public class UserProfileService {
         }
 
     }
-    public void createUserProfile(User user){
+    public UserProfile createUserProfile(User newUser){
         UserProfile userProfile = new UserProfile();
-        userProfile.setUser(user);
-        userProfileRepository.save(userProfile);
+        userProfile.setUser(newUser);
+        return userProfile;
+
     }
 
     public UserProfile getMyProfile() {
         setUser();
-        return userProfileRepository.findUserProfileByUser(user);
+
+        return userProfileRepository.findUserProfileByUserId(user.getId());
     }
 
 
     public UserProfile findUserProfileByUserId(Long Id) {
         Optional<User> optionalUser = userRepository.findById(Id);
         if (optionalUser.isPresent()) {
-            return userProfileRepository.findUserProfileByUser(optionalUser.get());
+            return userProfileRepository.findUserProfileByUserId(optionalUser.get().getId());
         }
         throw new InformationNotFoundException("User with Id: " + Id + " doesn't exist.");
     }

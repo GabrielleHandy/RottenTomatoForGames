@@ -15,7 +15,8 @@ public class UserProfile {
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne(mappedBy = "userProfile")
+    @OneToOne
+    @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
 
@@ -49,5 +50,37 @@ public class UserProfile {
         this.lastActive = new Date();
     }
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
+    public Date getLastActive() {
+        return lastActive;
+    }
+
+    public void setLastActive(Date lastActive) {
+        this.lastActive = lastActive;
+    }
+
+    @Override
+    public String toString() {
+        return "UserProfile{" +
+                "id=" + id +
+                ", user=" + user +
+                ", ratings=" + ratings +
+                ", lastActive=" + lastActive +
+                '}';
+    }
 }
