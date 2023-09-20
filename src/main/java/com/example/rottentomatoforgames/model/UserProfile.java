@@ -1,6 +1,8 @@
 package com.example.rottentomatoforgames.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -21,6 +23,7 @@ public class UserProfile {
     private User user;
 
     @OneToMany(mappedBy = "ratedBy", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Rating>  ratings;
 
 
