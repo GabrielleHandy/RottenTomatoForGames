@@ -22,7 +22,7 @@ public class UserProfile {
 
     @OneToMany(mappedBy = "ratedBy", orphanRemoval = true)
     private List<Rating>  ratings;
-//    List<Follower>
+
 
     @Column
     private Date lastActive;
