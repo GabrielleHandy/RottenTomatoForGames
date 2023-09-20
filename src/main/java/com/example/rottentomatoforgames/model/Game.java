@@ -22,20 +22,16 @@ public class Game {
     private List<Rating> ratings;
 
     @Column
-    private String genre;
-
-    @Column
     private int releaseYear;
 
     public Game() {
     }
 
-    public Game(Long id, String title, int averageRating, List<Rating> ratings, String genre, int releaseYear) {
+    public Game(Long id, String title, int averageRating, List<Rating> ratings,  int releaseYear) {
         this.id = id;
         this.title = title;
         this.averageRating = averageRating;
         this.ratings = ratings;
-        this.genre = genre;
         this.releaseYear = releaseYear;
     }
 
@@ -70,13 +66,7 @@ public class Game {
 
 
 
-    public String getGenre() {
-        return genre;
-    }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
 
     public int getReleaseYear() {
         return releaseYear;
@@ -92,8 +82,7 @@ public class Game {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", averageRating=" + averageRating +
-                ", ratings=" + ratings +
-                ", genre='" + genre + '\'' +
+                ", ratings=" + ratings + '\'' +
                 ", releaseYear=" + releaseYear +
                 '}';
     }
