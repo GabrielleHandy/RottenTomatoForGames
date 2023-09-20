@@ -55,4 +55,12 @@ public class UserProfileService {
         }
         throw new InformationNotFoundException("User with Id: " + Id + " doesn't exist.");
     }
+
+    public UserProfile getUserProfile(Long profileId) {
+        Optional<UserProfile> userProfileOptional = userProfileRepository.findById(profileId);
+        if(userProfileOptional.isPresent()){
+            return userProfileOptional.get();
+        }
+        throw new InformationNotFoundException("Profile with Id: " + profileId + " doesn't exist.");
+    }
 }
