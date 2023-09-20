@@ -16,12 +16,12 @@ public class Rating {
     private Long id;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnore
     @JoinColumn(name = "profile_id")
     private UserProfile ratedBy;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnore
     @JoinColumn(name = "game_id")
     private Game game;
@@ -36,9 +36,6 @@ public class Rating {
 
     @Column
     private Date timeMade;
-    public Long getId() {
-        return id;
-    }
 
     public Rating() {
         setTimeMade(new Date());
@@ -55,6 +52,9 @@ public class Rating {
 
     public void setId(Long id) {
         this.id = id;
+    }
+    public Long getId() {
+        return id;
     }
 
     public UserProfile getRatedBy() {
@@ -101,8 +101,8 @@ public class Rating {
     public String toString() {
         return "Rating{" +
                 "id=" + id +
-                ", ratedBy=" + ratedBy +
-                ", game=" + game +
+                ", ratedBy=" + ratedBy.getUser().getUserName() +
+                ", game=" + game.getTitle() +
                 ", rating=" + rating +
                 ", review='" + review + '\'' +
                 '}';

@@ -76,7 +76,6 @@ public class SeedData implements CommandLineRunner {
                 game = new Game();
                 line = scanner.nextLine();
                 String[] info = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-                System.out.println(Arrays.toString(info) + " "  +info[9]);
                 game.setTitle(info[1]);
                 game.setReleaseYear(Integer.parseInt(info[6]));
                 gameRepository.save(game);

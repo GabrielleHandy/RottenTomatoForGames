@@ -81,7 +81,7 @@ public class UserProfile {
     public String toString() {
         return "UserProfile{" +
                 "id=" + id +
-                ", user=" + user +
+                ", user=" + user.getUserName() +
                 ", ratings=" + ratings +
                 ", lastActive=" + lastActive +
                 '}';

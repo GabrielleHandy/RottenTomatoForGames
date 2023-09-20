@@ -71,7 +71,8 @@ public class RatingService {
 
             if(ratingRepository.existsByRatedByAndId(user.getUserProfile(), ratingId)){
                 ratingObj.setId(ratingId);
-
+                ratingObj.setRatedBy(user.getUserProfile());
+                ratingObj.setGame(optionalRating.get().getGame());
                 Rating savedRating = ratingRepository.save(ratingObj);
                 Game updateGame = optionalRating.get().getGame();
                 updateGame.setAverageRating();
