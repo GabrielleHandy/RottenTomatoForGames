@@ -70,4 +70,15 @@ public class Rating {
     public void setReview(String review) {
         this.review = review;
     }
+
+    @Override
+    public String toString() {
+        return "Rating{" +
+                "id=" + id +
+                ", ratedBy=" + ratedBy +
+                ", game=" + game +
+                ", rating=" + rating +
+                ", review='" + review + '\'' +
+                '}';
+    }
 }
