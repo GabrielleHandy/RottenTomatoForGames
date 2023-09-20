@@ -23,8 +23,13 @@ public class UserProfileController {
         return userProfileService.getMyProfile();
     }
 
-    @GetMapping("/${profileId}}")
+    @GetMapping("/profile/{profileId}/")
     public UserProfile getUserProfile(@PathVariable(value = "profileId") Long id){
         return userProfileService.getUserProfile(id);
+    }
+
+    @GetMapping("/byuser/{UserId}/")
+    public UserProfile getUserProfileByUser(@PathVariable(value = "UserId") Long id){
+        return userProfileService.getUserProfileByUserId(id);
     }
 }

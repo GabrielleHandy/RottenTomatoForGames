@@ -28,10 +28,10 @@ public class UserProfileService {
     }
 
     public void setUser() {
-        if (user == null){
+
             MyUserDetails userDetails =(MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             this.user = userDetails.getUser();
-        }
+
 
     }
     public UserProfile createUserProfile(User newUser){
@@ -48,7 +48,7 @@ public class UserProfileService {
     }
 
 
-    public UserProfile findUserProfileByUserId(Long Id) {
+    public UserProfile getUserProfileByUserId(Long Id) {
         Optional<User> optionalUser = userRepository.findById(Id);
         if (optionalUser.isPresent()) {
             return userProfileRepository.findUserProfileByUserId(optionalUser.get().getId());
@@ -58,6 +58,7 @@ public class UserProfileService {
 
     public UserProfile getUserProfile(Long profileId) {
         Optional<UserProfile> userProfileOptional = userProfileRepository.findById(profileId);
+        System.out.println(profileId);
         if(userProfileOptional.isPresent()){
             return userProfileOptional.get();
         }
