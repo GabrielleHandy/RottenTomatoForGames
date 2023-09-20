@@ -3,6 +3,7 @@ package com.example.rottentomatoforgames.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Entity
@@ -31,6 +32,8 @@ public class Rating {
     @Column
     private String review;
 
+    @Column
+    private Date timeMade;
     public Long getId() {
         return id;
     }
@@ -69,6 +72,14 @@ public class Rating {
 
     public void setReview(String review) {
         this.review = review;
+    }
+
+    public Date getTimeMade() {
+        return timeMade;
+    }
+
+    public void setTimeMade(Date timeMade) {
+        this.timeMade = timeMade;
     }
 
     @Override
