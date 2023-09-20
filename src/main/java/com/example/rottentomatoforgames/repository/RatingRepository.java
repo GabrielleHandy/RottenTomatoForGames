@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface RatingRepository extends JpaRepository<Rating, Long> {
     List<Rating> findAllByGame_Id(Long gameId);
-    Rating findByRatedBy_IdAndGame_Id(Long ratedBy_id, Long game_id);
+    boolean existsByRatedBy_IdAndGame_Id(Long ratedBy_id, Long game_id);
 
 }

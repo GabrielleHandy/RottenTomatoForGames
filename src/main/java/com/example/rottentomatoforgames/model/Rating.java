@@ -28,6 +28,7 @@ public class Rating {
 
 
     @Column
+
     private int rating;
 
     @Column
@@ -40,6 +41,7 @@ public class Rating {
     }
 
     public Rating() {
+        setTimeMade(new Date());
     }
 
     public Rating(Long id, UserProfile ratedBy, Game game, int rating, String review, Date timeMade) {
