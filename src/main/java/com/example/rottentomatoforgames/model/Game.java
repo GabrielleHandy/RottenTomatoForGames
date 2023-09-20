@@ -59,13 +59,24 @@ public class Game {
         return averageRating;
     }
 
+    /**
+     * Calculates new averages after a change in Ratings happens
+     * and checks for 0 ratings to avoid / by zero error
+     */
     public void setAverageRating() {
+        if(ratings.isEmpty()){
+            this.averageRating = 0;
+            return;
+
+        }
         int sumRating = 0;
+
         for (Rating rating : ratings) {
             sumRating += rating.getRating();
         }
 
         this.averageRating = sumRating/ratings.size();
+
     }
 
     public List<Rating> getRatings() {

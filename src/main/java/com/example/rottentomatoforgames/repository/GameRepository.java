@@ -6,7 +6,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GameRepository extends JpaRepository<Game, Long> {
-
+    /**
+     * Finds the highest rated game
+     * @return
+     * returns Game with the highest rating
+     */
     Game findTopByOrderByAverageRatingDesc();
 
 }

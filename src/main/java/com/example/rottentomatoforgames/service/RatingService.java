@@ -45,6 +45,15 @@ public class RatingService {
         throw new InformationNotFoundException("Game with Id: " + gameId + " not found in database");
     }
 
+    /**
+     * Adds a rating to a game
+     * @param newRating
+     *  Rating that user wants to add
+     * @param gameId
+     * Game Id of game that is getting the new rating
+     * @return
+     * returns new rating
+     */
     public Rating addRating(Rating newRating, Long gameId) {
         Optional<Game> optionalGame = gameRepository.findById(gameId);
         if(optionalGame.isPresent()){
@@ -64,6 +73,15 @@ public class RatingService {
 
     }
 
+    /**
+     * Updates an existing rating made by the user
+     * @param ratingObj
+     * The new rating information
+     * @param ratingId
+     * The rating they want to change
+     * @return
+     * returns updated Rating
+     */
     public Rating updateRating(Rating ratingObj,Long ratingId ){
         setUser();
         Optional<Rating> optionalRating = ratingRepository.findById(ratingId);
@@ -84,6 +102,13 @@ public class RatingService {
         throw new InformationNotFoundException("Rating with Id: " + ratingId + " not found in database");
     }
 
+    /**
+     * Deletes Rating made by User
+     * @param ratingId
+     * The idea of the Rating that is going to be deleted
+     * @return
+     * returns deleted Rating
+     */
     public Rating deleteRating(Long ratingId) {
         setUser();
         Optional<Rating> optionalRating = ratingRepository.findById(ratingId);

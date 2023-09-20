@@ -10,9 +10,8 @@ import java.util.Optional;
 
 @Repository
 public interface RatingRepository extends JpaRepository<Rating, Long> {
-    List<Rating> findAllByGame_Id(Long gameId);
-    boolean existsByRatedBy_IdAndGame_Id(Long ratedBy_id, Long game_id);
     Optional<Rating> findById(Long id);
+
     boolean existsByRatedByAndGame_Id(UserProfile userProfile, Long gameId);
 
     boolean existsByRatedByAndId(UserProfile userProfile, Long ratingId);
