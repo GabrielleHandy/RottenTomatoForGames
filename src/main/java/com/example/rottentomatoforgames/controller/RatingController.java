@@ -28,4 +28,6 @@ public class RatingController {
     public List<Rating> getAllRatingsByGame(@PathVariable(value = "gameId")Long gameId) {
         return ratingService.findRatingsByGame(gameId);
     }
+
+
 }
