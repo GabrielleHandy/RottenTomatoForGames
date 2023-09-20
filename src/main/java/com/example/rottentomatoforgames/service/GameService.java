@@ -28,4 +28,8 @@ public class GameService {
         }
         throw new InformationNotFoundException("Game with Id: " + gameId + " not found in database");
     }
+
+    public Game getHighestRating() {
+        return gameRepository.findTopByAverageRatingAsc();
+    }
 }
