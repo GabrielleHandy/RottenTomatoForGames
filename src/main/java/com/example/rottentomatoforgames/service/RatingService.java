@@ -52,7 +52,9 @@ public class RatingService {
             if(!ratingRepository.existsByRatedBy_IdAndGame_Id(user.getUserProfile().getId(), gameId)){
                 newRating.setRatedBy(user.getUserProfile());
                 newRating.setGame(optionalGame.get());
-                ratingRepository.save(newRating);
+                Rating savedRating = ratingRepository.save(newRating);
+                optionalGame.get().setAverageRating();
+                return savedRating;
             }
             throw new InformationExistException("You already made a rating for this game");
         }
