@@ -1,9 +1,11 @@
 package com.example.rottentomatoforgames.controller;
 
 import com.example.rottentomatoforgames.model.Game;
+
 import com.example.rottentomatoforgames.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,4 +26,8 @@ public class GameController {
         return gameService.getAllGames();
     }
 
+    @GetMapping("/game/{gameId}")
+    public Game getGameId(@PathVariable(value = "gameId")Long gameId) {
+        return gameService.findByGameId(gameId);
+    }
 }

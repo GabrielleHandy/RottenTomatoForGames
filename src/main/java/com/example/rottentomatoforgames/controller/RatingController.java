@@ -22,7 +22,7 @@ public class RatingController {
         return ratingService.getAllRatings();
     }
 
-    @GetMapping("/Game/{gameId}")
+    @GetMapping("/game/{gameId}")
     public List<Rating> getAllRatingsByGame(@PathVariable(value = "gameId")Long gameId) {
         return ratingService.findRatingsByGame(gameId);
     }
