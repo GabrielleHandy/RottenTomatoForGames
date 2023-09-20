@@ -1,5 +1,8 @@
 package com.example.rottentomatoforgames.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,6 +22,7 @@ public class Game {
 
     @OneToMany(mappedBy = "game", orphanRemoval = true)
     @Column
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Rating> ratings;
 
     @Column
@@ -56,8 +60,12 @@ public class Game {
     }
 
     public void setAverageRating() {
-        int averageRating = ratings.stream().map(Rating::getRating).reduce(0, Integer::sum );
-        this.averageRating = averageRating/ratings.size();
+        int sumRating = 0;
+        for (Rating rating : ratings) {
+            sumRating += rating.getRating();
+        }
+
+        this.averageRating = sumRating/ratings.size();
     }
 
     public List<Rating> getRatings() {
