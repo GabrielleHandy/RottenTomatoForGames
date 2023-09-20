@@ -32,4 +32,13 @@ public class RatingController {
         return ratingService.addRating(ratingObj, gameId);
     }
 
+    @PutMapping("/updateRating/{ratingId}")
+    public Rating updateRating(@RequestBody Rating ratingObj, @PathVariable(value = "ratingId")Long ratingId){
+        return ratingService.updateRating(ratingObj, ratingId);
+    }
+    @DeleteMapping ("/delete/{ratingId}")
+    public Rating deleteRating( @PathVariable(value = "ratingId")Long ratingId){
+        return ratingService.deleteRating(ratingId);
+    }
+
 }

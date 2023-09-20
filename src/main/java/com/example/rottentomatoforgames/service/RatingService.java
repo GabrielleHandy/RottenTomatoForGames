@@ -49,16 +49,51 @@ public class RatingService {
         Optional<Game> optionalGame = gameRepository.findById(gameId);
         if(optionalGame.isPresent()){
             setUser();
-            if(!ratingRepository.existsByRatedBy_IdAndGame_Id(user.getUserProfile().getId(), gameId)){
+            if(!ratingRepository.existsByRatedByAndGame_Id(user.getUserProfile(), gameId)){
                 newRating.setRatedBy(user.getUserProfile());
                 newRating.setGame(optionalGame.get());
                 Rating savedRating = ratingRepository.save(newRating);
-                optionalGame.get().setAverageRating();
+                Game updateGame = gameRepository.findById(gameId).get();
+                updateGame.setAverageRating();
+                gameRepository.save(updateGame);
                 return savedRating;
             }
             throw new InformationExistException("You already made a rating for this game");
         }
         throw new InformationNotFoundException("Game with Id: " + gameId + " not found in database");
 
+    }
+
+    public Rating updateRating(Rating ratingObj,Long ratingId ){
+        setUser();
+        Optional<Rating> optionalRating = ratingRepository.findById(ratingId);
+        if(optionalRating.isPresent()){
+
+            if(ratingRepository.existsByRatedByAndId(user.getUserProfile(), ratingId)){
+                ratingObj.setId(ratingId);
+
+                Rating savedRating = ratingRepository.save(ratingObj);
+                Game updateGame = optionalRating.get().getGame();
+                updateGame.setAverageRating();
+                gameRepository.save(updateGame);
+                return savedRating;
+            }
+            throw new InformationNotFoundException("Rating with Id: "+ ratingId + " was not made by you");
+        }
+        throw new InformationNotFoundException("Rating with Id: " + ratingId + " not found in database");
+    }
+
+    public Rating deleteRating(Long ratingId) {
+        setUser();
+        Optional<Rating> optionalRating = ratingRepository.findById(ratingId);
+        if(optionalRating.isPresent()){
+
+            if(ratingRepository.existsByRatedByAndId(user.getUserProfile(), ratingId)){
+                ratingRepository.delete(optionalRating.get());
+                return optionalRating.get();
+            }
+            throw new InformationNotFoundException("Rating with Id: "+ ratingId + " was not made by you");
+        }
+        throw new InformationNotFoundException("Rating with Id: " + ratingId + " not found in database");
     }
 }
