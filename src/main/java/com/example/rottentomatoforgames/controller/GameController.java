@@ -30,7 +30,7 @@ public class GameController {
     public Game getGameId(@PathVariable(value = "gameId")Long gameId) {
         return gameService.findByGameId(gameId);
     }
-    @GetMapping("/game/higestRated")
+    @GetMapping("/game/highestRated")
     public Game getHighestAverageRating(){
         return gameService.getHighestRating();
     }
