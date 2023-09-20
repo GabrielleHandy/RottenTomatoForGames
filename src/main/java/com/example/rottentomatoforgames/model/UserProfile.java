@@ -15,7 +15,7 @@ public class UserProfile {
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
+    @OneToOne(mappedBy = "userProfile")
     @JsonIgnore
     private User user;
 
