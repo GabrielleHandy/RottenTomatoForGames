@@ -26,6 +26,18 @@ public class Rating {
     @JoinColumn(name = "game_id")
     private Game game;
 
+    public Rating() {
+    }
+
+    public Rating(Long id, UserProfile ratedBy, Game game, int rating, String review, Date timeMade) {
+        this.id = id;
+        this.ratedBy = ratedBy;
+        this.game = game;
+        this.rating = rating;
+        this.review = review;
+        this.timeMade = timeMade;
+    }
+
     @Column
     private int rating;
 
