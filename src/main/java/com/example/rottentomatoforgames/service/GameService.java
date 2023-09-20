@@ -30,6 +30,6 @@ public class GameService {
     }
 
     public Game getHighestRating() {
-        return gameRepository.findTopByAverageRatingAsc();
+        return gameRepository.findTopByOrderByAverageRatingDesc();
     }
 }
