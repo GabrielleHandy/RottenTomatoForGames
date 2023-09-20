@@ -1,7 +1,10 @@
 package com.example.rottentomatoforgames.service;
 
+import com.example.rottentomatoforgames.model.Game;
 import com.example.rottentomatoforgames.repository.GameRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class GameService {
@@ -12,4 +15,7 @@ public class GameService {
     }
 
 
+    public List<Game> getAllGames() {
+        return gameRepository.findAll();
+    }
 }
