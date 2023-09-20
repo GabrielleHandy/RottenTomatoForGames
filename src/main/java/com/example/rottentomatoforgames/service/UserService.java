@@ -1,7 +1,6 @@
 package com.example.rottentomatoforgames.service;
 import com.example.rottentomatoforgames.exception.InformationExistException;
 import com.example.rottentomatoforgames.model.User;
-import com.example.rottentomatoforgames.model.UserProfile;
 import com.example.rottentomatoforgames.model.request.LoginRequest;
 import com.example.rottentomatoforgames.repository.UserRepository;
 import com.example.rottentomatoforgames.security.JwtUtils;
@@ -24,13 +23,15 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final AuthenticationManager authenticationManager;
+    private final UserProfileService userProfileService;
     private final JwtUtils jwtUtils;
 
     @Autowired
-    public UserService(@Lazy PasswordEncoder passwordEncoder, UserRepository userRepository, @Lazy AuthenticationManager authenticationManager, JwtUtils jwtUtils) {
+    public UserService(@Lazy PasswordEncoder passwordEncoder, UserRepository userRepository, @Lazy AuthenticationManager authenticationManager, @Lazy  UserProfileService userProfileService, JwtUtils jwtUtils) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.authenticationManager = authenticationManager;
+        this.userProfileService = userProfileService;
         this.jwtUtils = jwtUtils;
 
     }
@@ -40,10 +41,8 @@ public class UserService {
     public User createUser(User userObj){
         if(!userRepository.existsByEmailAddress(userObj.getEmailAddress())){
             userObj.setPassword(passwordEncoder.encode(userObj.getPassword()));
-            UserProfile userProfile = new UserProfile();
             User newUser =userRepository.save(userObj);
-            userProfile.setUser(newUser);
-
+            userProfileService.createUserProfile(newUser);
             return newUser;
         }
         throw new InformationExistException("User with email address " + userObj.getEmailAddress()+ " already exists.");

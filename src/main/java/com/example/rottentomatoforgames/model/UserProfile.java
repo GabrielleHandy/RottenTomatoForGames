@@ -26,6 +26,7 @@ public class UserProfile {
     @Column
     private Date lastActive;
 
+
     public UserProfile() {
         setLastActive();
     }

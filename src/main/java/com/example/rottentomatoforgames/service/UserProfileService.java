@@ -28,11 +28,16 @@ public class UserProfileService {
     }
 
     public void setUser() {
-        if (user.getEmailAddress().equals(null)){
+        if (user == null){
             MyUserDetails userDetails =(MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             this.user = userDetails.getUser();
         }
 
+    }
+    public void createUserProfile(User user){
+        UserProfile userProfile = new UserProfile();
+        userProfile.setUser(user);
+        userProfileRepository.save(userProfile);
     }
 
     public UserProfile getMyProfile() {
@@ -41,9 +46,9 @@ public class UserProfileService {
     }
 
 
-    public UserProfile findUserProfileByUserId(Long Id){
+    public UserProfile findUserProfileByUserId(Long Id) {
         Optional<User> optionalUser = userRepository.findById(Id);
-        if(optionalUser.isPresent()){
+        if (optionalUser.isPresent()) {
             return userProfileRepository.findUserProfileByUser(optionalUser.get());
         }
         throw new InformationNotFoundException("User with Id: " + Id + " doesn't exist.");
